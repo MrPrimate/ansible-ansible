@@ -1,0 +1,14 @@
+---
+# This role conains tasks to deploy ansible
+
+- name: ensure EPEL ansible are installed
+  yum:
+    name={{ item }}
+    state=present
+  sudo: yes
+  with_items:
+    - epel-release
+    - ansible
+    - python-boto
+  when: ansible_os_family == 'RedHat'
+  tags: install
